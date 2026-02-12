@@ -1,0 +1,29 @@
+name: Generate Project Tree
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tree:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install tree
+        run: sudo apt-get install tree
+
+      - name: Generate tree
+        run: |
+          echo "## 📂 Estrutura do Projeto" > STRUCTURE.md
+          echo '```text' >> STRUCTURE.md
+          tree -L 3 >> STRUCTURE.md
+          echo '```' >> STRUCTURE.md
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: update project structure"
