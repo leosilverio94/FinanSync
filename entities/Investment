@@ -1,0 +1,63 @@
+{
+  "name": "Investment",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nome do investimento"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "stocks",
+        "fixed_income",
+        "funds",
+        "crypto",
+        "real_estate",
+        "savings",
+        "other"
+      ],
+      "description": "Tipo do investimento"
+    },
+    "institution": {
+      "type": "string",
+      "description": "Institui\u00e7\u00e3o financeira"
+    },
+    "invested_amount": {
+      "type": "number",
+      "description": "Valor investido"
+    },
+    "current_value": {
+      "type": "number",
+      "description": "Valor atual"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Data da compra"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "invested_amount",
+    "current_value"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
